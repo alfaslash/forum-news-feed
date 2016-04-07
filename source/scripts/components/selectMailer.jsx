@@ -7,14 +7,17 @@ var mailersList = mailers.map(function(mailer, index) {
 });
 
 class SelectMailer extends Component {
+    onSelectMailer(e) {
+        this.props.selectMailer(e.target.options[ e.target.selectedIndex ].text);
+    }
+
     render() {
         return (
             <div className="mailer">
                 <p>Выберите одно из предложенных имен:</p>
-                <select className="select-mailer">
+                <select className="select-mailer" onChange={::this.onSelectMailer}>
                     {mailersList}
                 </select>
-                <ButtonSendMessage />
             </div>
         )
     }

@@ -1,9 +1,13 @@
 import { ADD_MESSAGE } from '../constants/action-types';
 
-export default function messages(state = [], action) {
+const initialState = {
+    message: 'Сообщений не найдено'
+};
+
+export default function messages(state = initialState, action) {
     switch (action.type) {
         case ADD_MESSAGE:
-            //return [...state, ...action.receivedMessages];
+            return {...state, message: action.receivedMessages};
         default:
             return state;
     }

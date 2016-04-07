@@ -13,4 +13,4 @@ render(
         <App />
     </Provider>,
     document.getElementById('forum-news-feed')
-)
+);
