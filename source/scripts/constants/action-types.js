@@ -1,4 +1,5 @@
 export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const REMOVE_MESSAGE = 'REMOVE_MESSAGE';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const SELECT_MAILER = 'SELECT_MAILER';
 export const LOAD_MESSAGES = 'LOAD_MESSAGES';
