@@ -1,13 +1,20 @@
 import { ADD_MESSAGE } from '../constants/action-types';
 
-const initialState = {
-    message: 'Сообщений не найдено'
-};
+const initialState = [{
+        text: 'Сообщений не найдено',
+        author: null,
+        id: 0
+    }];
 
 export default function messages(state = initialState, action) {
     switch (action.type) {
         case ADD_MESSAGE:
-            return {...state, message: action.receivedMessages};
+            let index = state.length - 1;
+
+            if (state[0].id) {
+                return state.slice(0).concat([{text: action.receivedMessages, id: ++index}]);
+            }
+            return [].concat([{text: action.receivedMessages, id: ++index}]);
         default:
             return state;
     }

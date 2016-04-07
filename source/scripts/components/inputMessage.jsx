@@ -2,7 +2,12 @@ import React, { PropTypes, Component } from 'react';
 
 class InputMessage extends Component {
     writeMessage(e) {
-        this.props.addMessage(e.target.value);
+        let val = e.target.value.trim();
+
+        if (val.length) {
+            this.props.addMessage(e.target.value);
+            e.target.value = '';
+        }
     }
 
     render() {
