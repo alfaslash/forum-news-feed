@@ -1,4 +1,4 @@
-import { ADD_MESSAGE, REMOVE_MESSAGE } from '../constants/action-types';
+import { ADD_MESSAGE, REMOVE_MESSAGE, SELECT_MAILER } from '../constants/action-types';
 
 const initialState = [{
         text: 'Сообщений не найдено',
@@ -20,6 +20,11 @@ export default function messages(state = initialState, action) {
                 return initialState;
             }
             return state.filter((obj) => {return obj.id !== action.receivedId});
+        case SELECT_MAILER:
+            let newState = state.slice(0);
+            //@todo позже поправить
+            newState[newState.length - 1].author = action.receivedMailer;
+            return newState;
         default:
             return state;
     }

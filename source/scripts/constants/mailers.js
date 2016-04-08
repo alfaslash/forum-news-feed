@@ -1,4 +1,5 @@
 export let mailers = [
+    'Anonymous',
     'Гертингер',
     'Олос',
     'Гардивен',

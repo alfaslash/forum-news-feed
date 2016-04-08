@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-import mailers from './mailers-reducer';
 import messages from './messages-reducer';
 
 const rootReducer = combineReducers({
-    messages, mailers
+    messages
 });
 
 export default rootReducer;

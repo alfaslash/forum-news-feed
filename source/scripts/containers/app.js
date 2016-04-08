@@ -22,9 +22,7 @@ class App extends Component {
 
     render() {
         const message = this.props.message.messages;
-        const mailer = this.props.mailers;
-        const { addMessage, removeMessage } = this.props.messagesAction;
-        const { selectMailer } = this.props.mailerAction;
+        const { addMessage, removeMessage, selectMailer } = this.props.messagesAction;
 
         return (
             <div className="messages-container">
@@ -39,7 +37,6 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        mailers: state.mailers,
         message: state
     }
 }
