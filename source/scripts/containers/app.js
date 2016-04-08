@@ -6,7 +6,6 @@ import InputMessage from '../components/inputMessage.jsx';
 import SelectMailer from '../components/selectMailer.jsx';
 import MessagesList from '../components/messagesList.jsx';
 import * as messagesAction from '../actions/messages-action';
-import * as mailerAction from '../actions/mailers-action';
 
 //let _connect = state => ({
 //    mailers: state.mailers,
@@ -43,8 +42,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        messagesAction: bindActionCreators(messagesAction, dispatch),
-        mailerAction: bindActionCreators(mailerAction, dispatch)
+        messagesAction: bindActionCreators(messagesAction, dispatch)
     }
 }
 
