@@ -3,25 +3,32 @@ var webpack = require('webpack');
 
 module.exports = {
    devtool: 'source-map',
-   entry: {
-      client: './source/scripts/modules/index.jsx'
-   },
+   entry: [
+      'webpack-hot-middleware/client',
+       'babel-polyfill',
+      './source/scripts/modules/index.jsx'
+   ],
    root: path.resolve('./'),
    output: {
       path: path.resolve(__dirname, './public/build/'),
-      filename: '[name].bundle.js'
+      filename: 'bundle.js',
+      publicPath: '/static/'
    },
    module: {
       resolve: {
          extensions: ['', '.js', '.jsx', '.css']
       },
       loaders: [{
-         test: /\.jsx?$/,
+         loaders: ['react-hot', 'babel-loader'],
+         include: [
+            path.resolve(__dirname, 'source/scripts')
+         ],
          exclude: /node_modules/,
-         loaders: ["babel-loader"]
+         test: /\.jsx?$/,
+         plugins: ['transform-runtime']
       }, {
          test: /\.html$/,
-         loader: "file?name=[name].[ext]",
+         loader: 'file?name=[name].[ext]'
       }, {
          test: /\.css$/,
          loader: 'style!css'
@@ -31,12 +38,10 @@ module.exports = {
       }]
    },
    stats: {
-      // Nice colored output
       colors: true
    },
    plugins: [
       new webpack.optimize.OccurenceOrderPlugin(),
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoErrorsPlugin()
+      new webpack.HotModuleReplacementPlugin()
    ]
 };
