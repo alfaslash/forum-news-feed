@@ -12,12 +12,15 @@ class SelectMailer extends Component {
     }
 
     render() {
+        const { sendMessage } = this.props;
+
         return (
             <div className="mailer">
                 <p>Выберите одно из предложенных имен:</p>
                 <select className="select-mailer" onChange={::this.onSelectMailer}>
                     {mailersList}
                 </select>
+                <ButtonSendMessage sendMessage={ sendMessage }  />
             </div>
         )
     }

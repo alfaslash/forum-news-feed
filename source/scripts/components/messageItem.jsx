@@ -9,17 +9,19 @@ class MessageItem extends Component {
     }
 
     render() {
-        const { id, message, mailer } = this.props;
+        const { id, message, mailer, isSend } = this.props;
 
         return (
-            <div className="message-item">{ message }
-                <If condition={ this.props.id !== 0 }>
-                    <Then><div className="message-info">
-                        <span className="remove-message" data-index={ id } title="Удалить сообщение" onClick={::this.removePost}>+</span>
-                        <div className="message-author">{ mailer }</div>
-                    </div></Then>
-                </If>
-            </div>
+            <If condition={ id === 0 || isSend }>
+                <Then><div className="message-item">{ message }
+                    <If condition={ id !== 0 }>
+                        <Then><div className="message-info">
+                            <span className="remove-message" data-index={ id } title="Удалить сообщение" onClick={::this.removePost}>+</span>
+                            <div className="message-author">{ mailer }</div>
+                        </div></Then>
+                    </If>
+                </div></Then>
+            </If>
         )
     }
 }

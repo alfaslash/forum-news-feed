@@ -3,14 +3,14 @@ import MessageItem from '../components/messageItem.jsx';
 
 class MessagesList extends Component {
     render() {
-        let messages = this.props.messages;
-        let _renderContentBlock = () => {
-            return messages.map((item, index) => <MessageItem message={ item.text } mailer={ item.author } id={ item.id } key={ index } removeMessage={ this.props.removeMessage }/>)
+        const { messages, isSend } = this.props;
+        let _renderMessageItem = () => {
+            return messages.map((item, index) => <MessageItem message={ item.text } mailer={ item.author } isSend={ isSend } id={ item.id } key={ index } removeMessage={ this.props.removeMessage }/>)
         };
 
         return (
             <div className="messages-list">
-                {_renderContentBlock()}
+                {_renderMessageItem()}
             </div>
         )
     }

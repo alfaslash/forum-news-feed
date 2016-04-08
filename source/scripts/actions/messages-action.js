@@ -1,9 +1,12 @@
 import { ADD_MESSAGE, REMOVE_MESSAGE, SELECT_MAILER } from '../constants/action-types'
 
+let messageId = 1;
+
 export function addMessage(message) {
     return {
         type: ADD_MESSAGE,
-        receivedMessages: message
+        receivedMessages: message,
+        id: messageId++
     }
 }
 

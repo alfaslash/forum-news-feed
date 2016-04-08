@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import MessagesList from './selectMailer.jsx';
 
 class SendMessage extends Component {
     constructor(props, context) {
@@ -6,9 +7,13 @@ class SendMessage extends Component {
         Object.assign(this, props, context);
     }
 
+    onSendMessage(e) {
+        this.props.sendMessage();
+    }
+
     render() {
         return (
-            <button className="send-message" type="submit" onClick={::this.onSendMessageClick}>Отправить сообщение</button>
+            <button className="send-message" type="submit" onClick={::this.onSendMessage}>Отправить сообщение</button>
         )
     }
 }

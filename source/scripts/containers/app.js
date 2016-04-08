@@ -6,6 +6,7 @@ import InputMessage from '../components/inputMessage.jsx';
 import SelectMailer from '../components/selectMailer.jsx';
 import MessagesList from '../components/messagesList.jsx';
 import * as messagesAction from '../actions/messages-action';
+import * as sendAction from '../actions/send-action';
 
 //let _connect = state => ({
 //    mailers: state.mailers,
@@ -20,15 +21,16 @@ class App extends Component {
     }
 
     render() {
-        const message = this.props.message.messages;
-        const { addMessage, removeMessage, selectMailer } = this.props.messagesAction;
+        const message = this.props.state.messages;
+        const isSend = this.props.state.send;
+        const { addMessage, removeMessage, selectMailer, sendMessage } = this.props.messagesAction;
 
         return (
             <div className="messages-container">
                 <Header />
                 <InputMessage addMessage={ addMessage }/>
-                <SelectMailer selectMailer={ selectMailer }/>
-                <MessagesList messages={ message } removeMessage={ removeMessage }/>
+                <SelectMailer selectMailer={ selectMailer } sendMessage = { sendMessage }/>
+                <MessagesList messages={ message } removeMessage={ removeMessage } isSend={ isSend }/>
             </div>
         );
     }
@@ -36,13 +38,13 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        message: state
+        state: state
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        messagesAction: bindActionCreators(messagesAction, dispatch)
+        messagesAction: bindActionCreators({...messagesAction, ...sendAction}, dispatch)
     }
 }
 
