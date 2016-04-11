@@ -1,4 +1,4 @@
-export let mailers = [
+export const mailers = [
     'Anonymous',
     'Гертингер',
     'Олос',

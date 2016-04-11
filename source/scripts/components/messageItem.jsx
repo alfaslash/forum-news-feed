@@ -16,8 +16,8 @@ class MessageItem extends Component {
                 <Then><div className="message-item">{ message }
                     <If condition={ id !== 0 }>
                         <Then><div className="message-info">
-                            <span className="remove-message" data-index={ id } title="Удалить сообщение" onClick={::this.removePost}>+</span>
-                            <div className="message-author">{ mailer }</div>
+                            <span className="remove-message" data-index={ id } title="Удалить сообщение" onClick={ ::this.removePost }>+</span>
+                            <div className="message-author">Автор: { mailer }</div>
                         </div></Then>
                     </If>
                 </div></Then>

@@ -12,12 +12,12 @@ class MessagesList extends Component {
                 isSent={ item.isSent }
                 id={ item.id }
                 key={ index }
-                removeMessage={ this.props.removeMessage }/>)
+                removeMessage={ this.props.removeMessage } />)
         };
 
         return (
             <div className="messages-list">
-                {_renderMessageItem()}
+                { _renderMessageItem() }
             </div>
         )
     }
