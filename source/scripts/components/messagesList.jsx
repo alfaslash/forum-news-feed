@@ -17,6 +17,7 @@ class MessagesList extends Component {
 
         return (
             <div className="messages-list">
+                <div className="post-count">Число сообщений: <strong>{ messages.length }</strong></div>
                 { _renderMessageItem() }
             </div>
         )
