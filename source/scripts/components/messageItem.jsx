@@ -9,10 +9,10 @@ class MessageItem extends Component {
     }
 
     render() {
-        const { id, message, mailer, isSend } = this.props;
+        const { id, message, mailer, isSent } = this.props;
 
         return (
-            <If condition={ id === 0 || isSend }>
+            <If condition={ isSent === true }>
                 <Then><div className="message-item">{ message }
                     <If condition={ id !== 0 }>
                         <Then><div className="message-info">

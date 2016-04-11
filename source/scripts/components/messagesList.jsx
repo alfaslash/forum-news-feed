@@ -3,9 +3,9 @@ import MessageItem from '../components/messageItem.jsx';
 
 class MessagesList extends Component {
     render() {
-        const { messages, isSend } = this.props;
+        const { messages, sentMessage } = this.props;
         let _renderMessageItem = () => {
-            return messages.map((item, index) => <MessageItem message={ item.text } mailer={ item.author } isSend={ isSend } id={ item.id } key={ index } removeMessage={ this.props.removeMessage }/>)
+            return messages.map((item, index) => <MessageItem message={ item.text } sentMessage={ sentMessage } mailer={ item.author } isSent={ item.isSent } id={ item.id } key={ index } removeMessage={ this.props.removeMessage }/>)
         };
 
         return (

@@ -6,7 +6,7 @@ class InputMessage extends Component {
 
         if (val.length) {
             this.props.addMessage(e.target.value);
-            e.target.value = '';
+            //e.target.value = '';
         }
     }
 
