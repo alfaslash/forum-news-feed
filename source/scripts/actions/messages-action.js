@@ -1,6 +1,6 @@
 import { ADD_MESSAGE, REMOVE_MESSAGE, SELECT_MAILER, SEND_MESSAGE } from '../constants/action-types'
 
-let messageId = 1;
+let messageId = +JSON.parse(localStorage.getItem('forums-index')) || 1;
 
 export function addMessage(message) {
     return {

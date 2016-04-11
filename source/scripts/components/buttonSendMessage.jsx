@@ -9,11 +9,13 @@ class SendMessage extends Component {
 
     onSendMessage(e) {
         this.props.sendMessage();
+        this.props.resetMailer();
+        this.props.resetMessage();
     }
 
     render() {
         return (
-            <button className="send-message" type="submit" onClick={::this.onSendMessage}>Отправить сообщение</button>
+            <button className="send-message" type="submit" onClick={ ::this.onSendMessage }>Отправить сообщение</button>
         )
     }
 }

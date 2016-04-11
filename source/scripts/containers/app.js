@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Header from '../components/header.jsx';
@@ -13,6 +14,15 @@ class App extends Component {
         Object.assign(this, props, context);
     }
 
+    resetMessage() {
+        let inputMessage = document.querySelector('.input-message');
+        inputMessage.value = '';
+    }
+
+    componentDidUpdate() {
+        localStorage.setItem('forums', JSON.stringify(this.props.state.messages));
+    }
+
     render() {
         const message = this.props.state.messages;
         const { addMessage, removeMessage, selectMailer, sendMessage, sentMessage } = this.props.messagesAction;
@@ -20,9 +30,9 @@ class App extends Component {
         return (
             <div className="messages-container">
                 <Header />
-                <InputMessage addMessage={ addMessage }/>
-                <SelectMailer selectMailer={ selectMailer } sendMessage = { sendMessage }/>
-                <MessagesList messages={ message } removeMessage={ removeMessage } sentMessage={ sentMessage }/>
+                <InputMessage addMessage={ addMessage } resetMessage={ this.resetMessage } />
+                <SelectMailer selectMailer={ selectMailer } sendMessage={ sendMessage } resetMessage={ this.resetMessage } />
+                <MessagesList messages={ message } removeMessage={ removeMessage } sentMessage={ sentMessage } />
             </div>
         );
     }
