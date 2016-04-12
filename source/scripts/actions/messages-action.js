@@ -7,7 +7,7 @@ export function addMessage(message, mailer) {
         type: ADD_MESSAGE,
         receivedMessages: message,
         receivedMailer: mailer,
-        id: messageId++
+        id: ++messageId
     }
 }
 
