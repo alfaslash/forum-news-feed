@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Header from '../components/header.jsx';
-import InputMessage from '../components/inputMessage.jsx';
-import SelectMailer from '../components/selectMailer.jsx';
+import MainForm from '../components/mainForm.jsx';
 import MessagesList from '../components/messagesList.jsx';
 import * as messagesAction from '../actions/messages-action';
 
@@ -25,14 +24,13 @@ class App extends Component {
 
     render() {
         const message = this.props.state.messages;
-        const { addMessage, removeMessage, selectMailer, sendMessage, sentMessage } = this.props.messagesAction;
+        const { addMessage, removeMessage } = this.props.messagesAction;
 
         return (
             <div className="messages-container">
                 <Header />
-                <InputMessage addMessage={ addMessage } resetMessage={ this.resetMessage } />
-                <SelectMailer selectMailer={ selectMailer } sendMessage={ sendMessage } resetMessage={ this.resetMessage } />
-                <MessagesList messages={ message } removeMessage={ removeMessage } sentMessage={ sentMessage } />
+                <MainForm addMessage={ addMessage } />
+                <MessagesList messages={ message } removeMessage={ removeMessage } />
             </div>
         );
     }
