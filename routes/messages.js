@@ -1,8 +1,8 @@
-var Messages = require('../models/movie');
+var Messages = require('../models/messages');
 var express = require('express');
 var router = express.Router();
 
-router.route('/movies')
+router.route('/messages')
     .get(function(req, res) {
         Messages.find(function(err, messages) {
             if (err) {
@@ -44,3 +44,27 @@ router.route('/messages/:id').put(function(req,res){
         });
     });
 });
+
+router.route('/messages/:id').get(function(req, res) {
+    Messages.findOne({ _id: req.params.id}, function(err, message) {
+        if (err) {
+            return res.send(err);
+        }
+
+        res.json(message);
+    });
+});
+
+router.route('/messages/:id').delete(function(req, res) {
+    Messages.remove({
+        _id: req.params.id
+    }, function(err, message) {
+        if (err) {
+            return res.send(err);
+        }
+
+        res.json({ message: 'Successfully deleted' });
+    });
+});
+
+module.exports = router;
