@@ -3,7 +3,8 @@ var Schema = mongoose.Schema;
 
 var messagesSchema = new Schema({
     author: String,
-    message: String
+    text: String,
+    id: Number
 });
 
 module.exports = mongoose.model('Messages', messagesSchema);

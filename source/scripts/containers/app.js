@@ -22,15 +22,19 @@ class App extends Component {
         localStorage.setItem('forums', JSON.stringify(this.props.state.messages));
     }
 
+    componentDidMount() {
+        this.props.messagesAction.getMessages();
+    }
+
     render() {
-        const message = this.props.state.messages;
+        const {messages:message, isFetching} = this.props.state.messages;
         const { addMessage, removeMessage } = this.props.messagesAction;
 
         return (
             <div className="messages-container">
                 <Header />
                 <MainForm addMessage={ addMessage } />
-                <MessagesList messages={ message } removeMessage={ removeMessage } />
+                <MessagesList messages={ message } isFetching={ isFetching } removeMessage={ removeMessage } />
             </div>
         );
     }
