@@ -8,7 +8,7 @@ class MessagesList extends Component {
             return messages.map((item, index) => <MessageItem
                 message={ item.text }
                 mailer={ item.author }
-                id={ item.id }
+                id={ item._id }
                 key={ index }
                 removeMessage={ removeMessage } />)
         };
@@ -16,7 +16,7 @@ class MessagesList extends Component {
         return (
             <div className="messages-list">
                 { isFetching ? <span>Загрузка...</span> : <span></span> }
-                <div className="post-count">Число сообщений: <strong>{ messages[0].id ? messages.length : '0' }</strong></div>
+                <div className="post-count">Число сообщений: <strong>{ messages[0]._id ? messages.length : '0' }</strong></div>
                 { _renderMessageItem() }
             </div>
         )

@@ -15,17 +15,17 @@ router.route('/messages')
     .post(function(req, res) {
         var message = new Messages(req.body);
 
-        message.save(function(err) {
+        message.save(function(err, message) {
             if (err) {
                 return res.send(err);
             }
 
-            res.send({ message: 'Message Added' });
+            res.json(message);
         });
     });
 
-router.route('/messages/:id').put(function(req,res){
-    Messages.findOne({ _id: req.params.id }, function(err, messsage) {
+router.route('/messages/:id').put(function(req, res){
+    Messages.findOne({ _id: req.params.id }, function(err) {
         if (err) {
             return res.send(err);
         }
@@ -58,7 +58,7 @@ router.route('/messages/:id').get(function(req, res) {
 router.route('/messages/:id').delete(function(req, res) {
     Messages.remove({
         _id: req.params.id
-    }, function(err, message) {
+    }, function(err) {
         if (err) {
             return res.send(err);
         }

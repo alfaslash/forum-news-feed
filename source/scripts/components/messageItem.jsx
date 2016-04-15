@@ -29,5 +29,5 @@ export default MessageItem;
 MessageItem.propTypes = {
     message: PropTypes.string.isRequired,
     mailer: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired
+    id: PropTypes.any.isRequired
 };
