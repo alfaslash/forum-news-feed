@@ -63,7 +63,7 @@ router.route('/messages/:id').delete(function(req, res) {
             return res.send(err);
         }
 
-        res.json({ message: 'Successfully deleted' });
+        res.json(req.params.id);
     });
 });
 

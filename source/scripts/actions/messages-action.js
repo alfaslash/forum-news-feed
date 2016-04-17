@@ -33,11 +33,11 @@ export function removeMessage(id) {
         });
 
         $.ajax({
-            url: '/api/messages/' + id,
+            url: `/api/messages/${id}`,
             type: 'DELETE',
             success: function(data) {
                 dispatch({
-                    type: type.GET_MESSAGES_SUCCESS,
+                    type: type.REMOVE_MESSAGE_SUCCESS,
                     payload: data
                 })
             }

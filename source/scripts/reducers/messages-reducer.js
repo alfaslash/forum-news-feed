@@ -14,17 +14,20 @@ export default function messages(state = initialState, action) {
         case type.ADD_MESSAGE_REQUEST:
             return {...state, isFetching: true};
         case type.ADD_MESSAGE_SUCCESS:
-            console.log(action.payload);
             if (!state.messages[0]._id) {
                 return {messages: [{text: action.payload.text, author: action.payload.author, _id: action.payload._id}], isFetching: false};
             }
             let messages = [...state.messages, {text: action.payload.text, author: action.payload.author, _id: action.payload._id}];
             return {messages: messages, isFetching: false};
-        case type.REMOVE_MESSAGE:
+        case type.REMOVE_MESSAGE_REQUEST:
+            return {...state, isFetching: true};
+        case type.REMOVE_MESSAGE_SUCCESS:
             if (state.messages.length === 1) {
                 return initialState;
             }
-            return {messages: state.messages.filter((obj) => {return obj._id !== action.receivedId}), isFetching: false};
+            console.log(action.payload);
+            let message = state.messages.filter((obj) => {return obj._id !== action.payload});
+            return {messages: message, isFetching: false};
         case type.GET_MESSAGES_REQUEST:
             return {...state, isFetching: true};
         case type.GET_MESSAGES_SUCCESS:

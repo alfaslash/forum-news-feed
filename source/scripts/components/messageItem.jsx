@@ -3,7 +3,7 @@ import { If, Then, Else } from 'react-if';
 
 class MessageItem extends Component {
     removePost(e) {
-        let index = +e.target.getAttribute('data-index');
+        let index = e.target.getAttribute('data-index');
 
         this.props.removeMessage(index);
     }
