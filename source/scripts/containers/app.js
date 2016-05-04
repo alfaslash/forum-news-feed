@@ -27,7 +27,7 @@ class App extends Component {
     }
 
     render() {
-        const {messages:message, isFetching} = this.props.state.messages;
+        const { messages:message, isFetching } = this.props.state.messages;
         const { addMessage, removeMessage } = this.props.messagesAction;
 
         return (

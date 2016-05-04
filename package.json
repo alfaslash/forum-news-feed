@@ -38,6 +38,7 @@
     "jquery": "^2.2.3",
     "less-loader": "^2.2.3",
     "lodash": "^4.8.2",
+    "moment": "^2.13.0",
     "mongoose": "^4.4.12",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",

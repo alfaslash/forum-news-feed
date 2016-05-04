@@ -14,7 +14,8 @@ export function addMessage(message, mailer) {
             type: 'POST',
             data: {
                 text: message,
-                author: mailer
+                author: mailer,
+                date: new Date()
             },
             success: function(data) {
                 dispatch({

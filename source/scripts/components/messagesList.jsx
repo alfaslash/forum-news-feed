@@ -8,6 +8,7 @@ class MessagesList extends Component {
             return messages.map((item, index) => <MessageItem
                 message={ item.text }
                 mailer={ item.author }
+                date={ item.date }
                 id={ item._id }
                 key={ index }
                 removeMessage={ removeMessage } />)

@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import dateFormatting from '../helpers/date-formatting';
 import { If, Then, Else } from 'react-if';
 
 class MessageItem extends Component {
@@ -9,14 +10,22 @@ class MessageItem extends Component {
     }
 
     render() {
-        const { id, message, mailer} = this.props;
+        const { id, message, date, mailer} = this.props;
+        let _renderDateBlock = () => {
+            return (
+                <span> Опубликовано { dateFormatting(date) }</span>
+            )
+        };
 
         return (
             <div className="message-item">{ message }
                 <If condition={ id !== 0 }>
                     <Then><div className="message-info">
                         <span className="remove-message" data-index={ id } title="Удалить сообщение" onClick={ ::this.removePost }>+</span>
-                        <div className="message-author">Автор: { mailer }</div>
+                        <div className="message-author">
+                            Автор: { mailer }
+                            { date ? _renderDateBlock() : null }
+                        </div>
                     </div></Then>
                 </If>
             </div>
