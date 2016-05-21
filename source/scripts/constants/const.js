@@ -1,0 +1,1 @@
+export const NO_DATE_PUBLISH = 'довольно давно';

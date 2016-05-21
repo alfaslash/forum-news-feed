@@ -1,6 +1,6 @@
 import * as type from '../constants/action-types';
 
-const initialState = {
+const _initialState = {
     messages: [{
         text: 'Сообщений не найдено',
         author: 'Anonymous',
@@ -9,15 +9,26 @@ const initialState = {
     isFetching: false
 };
 
-export default function messages(state = initialState, action) {
+export default function messages(state = _initialState, action) {
     switch (action.type) {
         case type.ADD_MESSAGE_REQUEST:
             return {...state, isFetching: true};
         case type.ADD_MESSAGE_SUCCESS:
             if (!state.messages[0]._id) {
-                return {messages: [{text: action.payload.text, author: action.payload.author, _id: action.payload._id}], isFetching: false};
+                return { messages: [{
+                            text: action.payload.text,
+                            author: action.payload.author,
+                            date: action.payload.date,
+                            _id: action.payload._id}
+                        ],
+                        isFetching: false };
             }
-            let messages = [...state.messages, {text: action.payload.text, author: action.payload.author, _id: action.payload._id}];
+            let messages = [...state.messages, {
+                text: action.payload.text,
+                author: action.payload.author,
+                date: action.payload.date,
+                _id: action.payload._id
+            }];
             return {messages: messages, isFetching: false};
         case type.REMOVE_MESSAGE_REQUEST:
             return {...state, isFetching: true};

@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import dateFormatting from '../helpers/date-formatting';
 import { If, Then, Else } from 'react-if';
+import { NO_DATE_PUBLISH } from '../constants/const';
 
 class MessageItem extends Component {
     removePost(e) {
@@ -13,18 +14,18 @@ class MessageItem extends Component {
         const { id, message, date, mailer} = this.props;
         let _renderDateBlock = () => {
             return (
-                <span> Опубликовано { dateFormatting(date) }</span>
+                <span className="message-publish"> Опубликовано { date ? dateFormatting(date) : NO_DATE_PUBLISH}</span>
             )
         };
 
         return (
             <div className="message-item">{ message }
                 <If condition={ id !== 0 }>
-                    <Then><div className="message-info">
+                    <Then><div className="info">
                         <span className="remove-message" data-index={ id } title="Удалить сообщение" onClick={ ::this.removePost }>+</span>
-                        <div className="message-author">
-                            Автор: { mailer }
-                            { date ? _renderDateBlock() : null }
+                        <div className="message-info">
+                            { _renderDateBlock() }
+                            <span className="message-author">Автор: { mailer }</span>
                         </div>
                     </div></Then>
                 </If>
