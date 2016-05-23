@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
    devtool: 'source-map',
@@ -34,7 +35,7 @@ module.exports = {
          loader: 'style!css'
       }, {
          test: /\.less$/,
-         loader: 'style!css'
+         loader: ExtractTextPlugin.extract('style', 'css!autoprefixer?browsers=last 3 version!less')
       }]
    },
    stats: {
@@ -42,6 +43,7 @@ module.exports = {
    },
    plugins: [
       new webpack.optimize.OccurenceOrderPlugin(),
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      new ExtractTextPlugin('style.css')
    ]
 };
