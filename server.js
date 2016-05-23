@@ -11,10 +11,10 @@ var connectionString = require('./mongoConf');
 var port = 3000;
 
 var compiler = webpack(config);
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
+app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: config.output.publicPath}));
 app.use(webpackHotMiddleware(compiler));
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
     res.sendFile(__dirname + '/public/index.html')
 });
 
@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/api', messages);
 
-app.listen(port, function(error) {
+app.listen(port, function (error) {
     if (error) {
         console.error(error)
     } else {
