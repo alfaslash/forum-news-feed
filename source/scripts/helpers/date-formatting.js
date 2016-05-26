@@ -2,7 +2,7 @@ import moment from 'moment';
 
 export default function dateFormatting(date) {
     moment.locale('ru');
-    
+
     const now = moment();
     const currentHour = now.clone().add(-1, 'hour');
     const today = now.clone().startOf('day');

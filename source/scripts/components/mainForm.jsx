@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { mailers } from '../constants/mailers';
 import ReactDOM from 'react-dom';
 
-let mailersList = mailers.map(function(mailer, index) {
+let mailersList = mailers.map(function (mailer, index) {
     return <option value={ mailer } key={ index }>{ mailer }</option>;
 });
 
@@ -14,7 +14,7 @@ class MainForm extends Component {
 
     onSendMessage() {
         let messageText = ReactDOM.findDOMNode(this.refs.inputMessage).value;
-        let messageMailer = ReactDOM.findDOMNode(this.refs.selectMailer).options[ ReactDOM.findDOMNode(this.refs.selectMailer).selectedIndex ].text;
+        let messageMailer = ReactDOM.findDOMNode(this.refs.selectMailer).options[ReactDOM.findDOMNode(this.refs.selectMailer).selectedIndex].text;
 
         if (messageText.trim() === '') {
             ReactDOM.findDOMNode(this.refs.inputMessage).className += ' error';
@@ -44,7 +44,9 @@ class MainForm extends Component {
                     <select className="select-mailer" ref="selectMailer">
                         {mailersList}
                     </select>
-                    <button className="send-message" type="submit" onClick={ ::this.onSendMessage }>Отправить сообщение</button>
+                    <button className="send-message" type="submit" onClick={ ::this.onSendMessage }>Отправить
+                        сообщение
+                    </button>
                 </div>
             </div>
         )

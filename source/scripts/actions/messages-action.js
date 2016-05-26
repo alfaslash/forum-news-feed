@@ -17,7 +17,7 @@ export function addMessage(message, mailer) {
                 author: mailer,
                 date: new Date()
             },
-            success: function(data) {
+            success: function (data) {
                 dispatch({
                     type: type.ADD_MESSAGE_SUCCESS,
                     payload: data
@@ -36,7 +36,7 @@ export function removeMessage(id) {
         $.ajax({
             url: `/api/messages/${id}`,
             type: 'DELETE',
-            success: function(data) {
+            success: function (data) {
                 dispatch({
                     type: type.REMOVE_MESSAGE_SUCCESS,
                     payload: data
@@ -52,7 +52,7 @@ export function getMessages() {
             type: type.GET_MESSAGES_REQUEST
         });
 
-        $.get('/api/messages/', function(data) {
+        $.get('/api/messages/', function (data) {
             dispatch({
                 type: type.GET_MESSAGES_SUCCESS,
                 payload: data
