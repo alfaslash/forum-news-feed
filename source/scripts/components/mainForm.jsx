@@ -14,7 +14,7 @@ class MainForm extends Component {
 
     onSendMessage() {
         let messageText = ReactDOM.findDOMNode(this.refs.inputMessage).value;
-        let messageMailer = ReactDOM.findDOMNode(this.refs.selectMailer).options[ ReactDOM.findDOMNode(this.refs.selectMailer).selectedIndex ].text;
+        let messageMailer = ReactDOM.findDOMNode(this.refs.mailerName).value || 'Anonymous';
 
         if (messageText.trim() === '') {
             ReactDOM.findDOMNode(this.refs.inputMessage).className += ' error';
@@ -34,16 +34,13 @@ class MainForm extends Component {
             <div className="main-form">
                 <textarea
                     className="input-message"
-                    defaultValue=""
                     ref="inputMessage"
                     placeholder="Введите Ваше сообщение"
                     onChange={ ::this.writingMsg }>
                 </textarea>
                 <div className="mailer">
-                    <p>Выберите одно из предложенных имен:</p>
-                    <select className="select-mailer" ref="selectMailer">
-                        {mailersList}
-                    </select>
+                    <p>Представьтесь:</p>
+                    <input placeholder="Ваше имя" type="text" className="mailer-name" ref="mailerName" />
                     <button className="send-message" type="submit" onClick={ ::this.onSendMessage }>Отправить сообщение</button>
                 </div>
             </div>
