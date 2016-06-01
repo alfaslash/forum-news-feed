@@ -3,8 +3,8 @@ var express = require('express');
 var router = express.Router();
 
 router.route('/messages')
-    .get(function(req, res) {
-        Messages.find(function(err, messages) {
+    .get(function (req, res) {
+        Messages.find(function (err, messages) {
             if (err) {
                 return res.send(err);
             }
@@ -12,10 +12,10 @@ router.route('/messages')
             res.json(messages);
         });
     })
-    .post(function(req, res) {
+    .post(function (req, res) {
         var message = new Messages(req.body);
 
-        message.save(function(err, message) {
+        message.save(function (err, message) {
             if (err) {
                 return res.send(err);
             }
@@ -24,8 +24,8 @@ router.route('/messages')
         });
     });
 
-router.route('/messages/:id').put(function(req, res){
-    Messages.findOne({ _id: req.params.id }, function(err) {
+router.route('/messages/:id').put(function (req, res) {
+    Messages.findOne({_id: req.params.id}, function (err) {
         if (err) {
             return res.send(err);
         }
@@ -35,18 +35,18 @@ router.route('/messages/:id').put(function(req, res){
         }
 
         // save the message
-        message.save(function(err) {
+        message.save(function (err) {
             if (err) {
                 return res.send(err);
             }
 
-            res.json({ message: 'Massage updated!' });
+            res.json({message: 'Massage updated!'});
         });
     });
 });
 
-router.route('/messages/:id').get(function(req, res) {
-    Messages.findOne({ _id: req.params.id}, function(err, message) {
+router.route('/messages/:id').get(function (req, res) {
+    Messages.findOne({_id: req.params.id}, function (err, message) {
         if (err) {
             return res.send(err);
         }
@@ -55,10 +55,10 @@ router.route('/messages/:id').get(function(req, res) {
     });
 });
 
-router.route('/messages/:id').delete(function(req, res) {
+router.route('/messages/:id').delete(function (req, res) {
     Messages.remove({
         _id: req.params.id
-    }, function(err) {
+    }, function (err) {
         if (err) {
             return res.send(err);
         }

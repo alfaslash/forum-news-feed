@@ -15,13 +15,16 @@ export default function messages(state = _initialState, action) {
             return {...state, isFetching: true};
         case type.ADD_MESSAGE_SUCCESS:
             if (!state.messages[0]._id) {
-                return { messages: [{
-                            text: action.payload.text,
-                            author: action.payload.author,
-                            date: action.payload.date,
-                            _id: action.payload._id}
-                        ],
-                        isFetching: false };
+                return {
+                    messages: [{
+                        text: action.payload.text,
+                        author: action.payload.author,
+                        date: action.payload.date,
+                        _id: action.payload._id
+                    }
+                    ],
+                    isFetching: false
+                };
             }
             let messages = [...state.messages, {
                 text: action.payload.text,
@@ -37,7 +40,9 @@ export default function messages(state = _initialState, action) {
                 return initialState;
             }
             console.log(action.payload);
-            let message = state.messages.filter((obj) => {return obj._id !== action.payload});
+            let message = state.messages.filter((obj) => {
+                return obj._id !== action.payload
+            });
             return {messages: message, isFetching: false};
         case type.GET_MESSAGES_REQUEST:
             return {...state, isFetching: true};

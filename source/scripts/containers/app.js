@@ -33,8 +33,8 @@ class App extends Component {
         return (
             <div className="messages-container">
                 <Header />
-                <MainForm addMessage={ addMessage } />
-                <MessagesList messages={ message } isFetching={ isFetching } removeMessage={ removeMessage } />
+                <MainForm addMessage={ addMessage }/>
+                <MessagesList messages={ message } isFetching={ isFetching } removeMessage={ removeMessage }/>
             </div>
         );
     }

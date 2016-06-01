@@ -11,13 +11,14 @@ class MessagesList extends Component {
                 date={ item.date }
                 id={ item._id }
                 key={ index }
-                removeMessage={ removeMessage } />)
+                removeMessage={ removeMessage }/>)
         };
 
         return (
             <div className="messages-list">
                 { isFetching ? <span>Загрузка...</span> : <span></span> }
-                <div className="post-count">Число сообщений: <strong>{ messages[0]._id ? messages.length : '0' }</strong></div>
+                <div className="post-count">Число сообщений:
+                    <strong>{ messages[0]._id ? messages.length : '0' }</strong></div>
                 { _renderMessageItem() }
             </div>
         )

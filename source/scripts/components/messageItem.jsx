@@ -21,13 +21,16 @@ class MessageItem extends Component {
         return (
             <div className="message-item">{ message }
                 <If condition={ id !== 0 }>
-                    <Then><div className="info">
-                        <span className="remove-message" data-index={ id } title="Удалить сообщение" onClick={ ::this.removePost }>+</span>
-                        <div className="message-info">
-                            { _renderDateBlock() }
-                            <span className="message-author">Автор: { mailer }</span>
+                    <Then>
+                        <div className="info">
+                            <span className="remove-message" data-index={ id } title="Удалить сообщение"
+                                  onClick={ ::this.removePost }>+</span>
+                            <div className="message-info">
+                                { _renderDateBlock() }
+                                <span className="message-author">Автор: { mailer }</span>
+                            </div>
                         </div>
-                    </div></Then>
+                    </Then>
                 </If>
             </div>
         )

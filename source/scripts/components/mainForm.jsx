@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { mailers } from '../constants/mailers';
 import ReactDOM from 'react-dom';
 
-let mailersList = mailers.map(function(mailer, index) {
+let mailersList = mailers.map(function (mailer, index) {
     return <option value={ mailer } key={ index }>{ mailer }</option>;
 });
 
