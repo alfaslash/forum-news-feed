@@ -1,5 +1,5 @@
-import React, { PropTypes, Component } from 'react';
-import { mailers } from '../constants/mailers';
+import React, {PropTypes, Component} from 'react';
+import {mailers} from '../constants/mailers';
 import ReactDOM from 'react-dom';
 
 let mailersList = mailers.map(function (mailer, index) {
@@ -40,8 +40,10 @@ class MainForm extends Component {
                 </textarea>
                 <div className="mailer">
                     <p>Представьтесь:</p>
-                    <input placeholder="Ваше имя" type="text" className="mailer-name" ref="mailerName" />
-                    <button className="send-message" type="submit" onClick={ ::this.onSendMessage }>Отправить сообщение</button>
+                    <input placeholder="Ваше имя" type="text" className="mailer-name" ref="mailerName"/>
+                    <button className="send-message" type="submit" onClick={ ::this.onSendMessage }>Отправить
+                        сообщение
+                    </button>
                 </div>
             </div>
         )
