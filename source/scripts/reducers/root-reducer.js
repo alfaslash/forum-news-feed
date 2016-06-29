@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 import messages from './messages-reducer';
 
 const rootReducer = combineReducers({

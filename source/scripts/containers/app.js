@@ -18,16 +18,12 @@ class App extends Component {
         inputMessage.value = '';
     }
 
-    componentDidUpdate() {
-        localStorage.setItem('forums', JSON.stringify(this.props.state.messages));
-    }
-
     componentDidMount() {
         this.props.messagesAction.getMessages();
     }
 
     render() {
-        const { messages:message, isFetching } = this.props.state.messages;
+        const { messages:message, isFetching } = this.props;
         const { addMessage, removeMessage } = this.props.messagesAction;
 
         return (
@@ -42,7 +38,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        state: state
+        messages: state.get('messages').get('messages').toArray(),
+        isFetching: state.get('messages').get('isFetching')
     }
 }
 

@@ -2,9 +2,11 @@ import { createStore, applyMiddleware  } from 'redux';
 import rootReducer from '../reducers/root-reducer';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
+import Immutable from 'immutable';
 
-export default function configureStore(initialState) {
+export default function configureStore() {
     const logger = createLogger();
+    const initialState = Immutable.Map();
     const store = createStore(rootReducer, initialState, applyMiddleware(thunk, logger));
 
     if (module.hot) {
@@ -14,7 +16,6 @@ export default function configureStore(initialState) {
             store.replaceReducer(nextRootReducer)
         })
     }
-
 
     return store;
 }

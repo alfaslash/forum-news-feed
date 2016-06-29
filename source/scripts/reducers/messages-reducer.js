@@ -1,53 +1,57 @@
 import * as type from '../constants/action-types';
+import { Map, List } from 'immutable';
 
-const _initialState = {
-    messages: [{
+const _initialState = Map({
+    messages: List([{
         text: 'Сообщений не найдено',
         author: 'Anonymous',
         _id: 0
-    }],
+    }]),
     isFetching: false
-};
+});
 
 export default function messages(state = _initialState, action) {
     switch (action.type) {
         case type.ADD_MESSAGE_REQUEST:
-            return {...state, isFetching: true};
+            return state.set('isFetching', true);
+
         case type.ADD_MESSAGE_SUCCESS:
-            if (!state.messages[0]._id) {
-                return {
-                    messages: [{
-                        text: action.payload.text,
-                        author: action.payload.author,
-                        date: action.payload.date,
-                        _id: action.payload._id
-                    }
-                    ],
-                    isFetching: false
-                };
+        {
+            const request = action.payload;
+            const message = state.get('messages');
+            const newMessage = List([{
+                text: request.get('text'),
+                author: request.get('author'),
+                date: request.get('date'),
+                _id: request.get('_id')
+            }]);
+
+            if (!state.get('messages').first()._id) {
+                return Map({messages: newMessage, isFetching: false});
             }
-            let messages = [...state.messages, {
-                text: action.payload.text,
-                author: action.payload.author,
-                date: action.payload.date,
-                _id: action.payload._id
-            }];
-            return {messages: messages, isFetching: false};
+            return state.set('messages', message.concat(newMessage)).set('isFetching', false);
+        }
+
         case type.REMOVE_MESSAGE_REQUEST:
-            return {...state, isFetching: true};
+            return state.set('isFetching', true);
+
         case type.REMOVE_MESSAGE_SUCCESS:
-            if (state.messages.length === 1) {
-                return initialState;
+        {
+            const messages = state.get('messages');
+
+            if (messages.size === 1) {
+                return _initialState;
             }
-            console.log(action.payload);
-            let message = state.messages.filter((obj) => {
-                return obj._id !== action.payload
-            });
-            return {messages: message, isFetching: false};
+            const newMessage = messages.filter((obj) => obj._id !== action.payload);
+            return state.set('messages', newMessage).set('isFetching', false);
+        }
+
         case type.GET_MESSAGES_REQUEST:
-            return {...state, isFetching: true};
+            return state.set('isFetching', true);
+
         case type.GET_MESSAGES_SUCCESS:
-            return {messages: action.payload, isFetching: false};
+            return state.set('messages', action.payload).set('isFetching', false);
+
         default:
             return state;
     }

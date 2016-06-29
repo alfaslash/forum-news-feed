@@ -1,7 +1,6 @@
 import * as type from '../constants/action-types';
+import { Map, List } from 'immutable';
 import $ from 'jquery';
-
-let messageId = +JSON.parse(localStorage.getItem('forums-index')) || 1;
 
 export function addMessage(message, mailer) {
     return (dispatch) => {
@@ -17,10 +16,10 @@ export function addMessage(message, mailer) {
                 author: mailer,
                 date: new Date()
             },
-            success: function (data) {
+            success: function (request) {
                 dispatch({
                     type: type.ADD_MESSAGE_SUCCESS,
-                    payload: data
+                    payload: Map(request)
                 })
             }
         });
@@ -36,10 +35,10 @@ export function removeMessage(id) {
         $.ajax({
             url: `/api/messages/${id}`,
             type: 'DELETE',
-            success: function (data) {
+            success: function (request) {
                 dispatch({
                     type: type.REMOVE_MESSAGE_SUCCESS,
-                    payload: data
+                    payload: request
                 })
             }
         });
@@ -52,10 +51,10 @@ export function getMessages() {
             type: type.GET_MESSAGES_REQUEST
         });
 
-        $.get('/api/messages/', function (data) {
+        $.get('/api/messages/', function (request) {
             dispatch({
                 type: type.GET_MESSAGES_SUCCESS,
-                payload: data
+                payload: List(request)
             })
         });
     }
