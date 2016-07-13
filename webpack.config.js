@@ -5,7 +5,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     devtool: 'source-map',
     entry: [
-        'webpack-hot-middleware/client',
+        'webpack-dev-server/client?http://localhost:3000',
+        'webpack/hot/only-dev-server',
         'babel-polyfill',
         './source/scripts/modules/index.jsx'
     ],
@@ -26,7 +27,7 @@ module.exports = {
             ],
             exclude: /node_modules/,
             test: /\.jsx?$/,
-            plugins: ['transform-runtime']
+            plugins: ['react-hot!', 'transform-runtime']
         }, {
             test: /\.html$/,
             loader: 'file?name=[name].[ext]'

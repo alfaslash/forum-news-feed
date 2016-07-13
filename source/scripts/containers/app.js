@@ -13,17 +13,12 @@ class App extends Component {
         Object.assign(this, props, context);
     }
 
-    resetMessage() {
-        let inputMessage = document.querySelector('.input-message');
-        inputMessage.value = '';
-    }
-
     componentDidMount() {
         this.props.messagesAction.getMessages();
     }
 
     render() {
-        const { messages:message, isFetching } = this.props;
+        const { message, isFetching } = this.props;
         const { addMessage, removeMessage } = this.props.messagesAction;
 
         return (
@@ -38,7 +33,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        messages: state.get('messages').get('messages').toArray(),
+        message: state.get('messages').get('messages').toArray(),
         isFetching: state.get('messages').get('isFetching')
     }
 }
