@@ -9,7 +9,7 @@ import configureStore from '../store/store';
 const store = configureStore();
 
 render(
-    <Provider store={ store }>
+    <Provider store={store}>
         <App />
     </Provider>,
     document.getElementById('forum-news-feed')

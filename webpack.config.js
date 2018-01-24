@@ -3,47 +3,62 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    devtool: 'source-map',
     entry: [
         'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/only-dev-server',
         'babel-polyfill',
         './source/scripts/modules/index.jsx'
     ],
-    root: path.resolve('./'),
+
     output: {
         path: path.resolve(__dirname, './public/build/'),
         filename: 'bundle.js',
         publicPath: '/static/'
     },
+
     module: {
-        resolve: {
-            extensions: ['', '.js', '.jsx', '.css']
-        },
-        loaders: [{
-            loaders: ['react-hot', 'babel-loader'],
+        rules: [{
+            use: 'babel-loader',
             include: [
                 path.resolve(__dirname, 'source/scripts')
             ],
             exclude: /node_modules/,
-            test: /\.jsx?$/,
-            plugins: ['react-hot!', 'transform-runtime']
+            test: /\.jsx?$/
         }, {
             test: /\.html$/,
-            loader: 'file?name=[name].[ext]'
+            use: {
+                loader: 'file-loader',
+                query: {
+                    name: '[name].[ext]'
+                }
+            }
         }, {
             test: /\.css$/,
-            loader: 'style!css'
+            use: ['style-loader, css-loader']
         }, {
             test: /\.less$/,
-            loader: ExtractTextPlugin.extract('style', 'css!autoprefixer?browsers=last 3 version!less')
+            use: ExtractTextPlugin.extract(['style-loader', 'css-loader', 'less-loader'])
         }]
     },
+
+    resolve: {
+        modules: [
+            'node_modules',
+            path.resolve(__dirname)
+        ],
+        extensions: ['*', '.js', '.jsx', '.css']
+    },
+
+    context: __dirname,
+
+    devtool: 'source-map',
+
     stats: {
         colors: true
     },
+
     plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.ModuleConcatenationPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin('style.css')
     ]
